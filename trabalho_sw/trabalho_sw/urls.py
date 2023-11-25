@@ -18,5 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 urlpatterns = [
+    path('/', views.sw_view, name='sw'),
+    path('', include('supervisorio.urls')),
     path("admin/", admin.site.urls),
 ]
