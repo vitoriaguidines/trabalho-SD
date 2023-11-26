@@ -1,3 +1,3 @@
-def friends_view(request):
+def sw_view(request):
     frase = "teste"
     return render(request, "sw.html", {'frase': frase})

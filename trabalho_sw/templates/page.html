@@ -6,40 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>{% block title %}Trabalho SW{% endblock %}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-
-        input, button {
-            padding: 10px;
-            margin: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
-    <h2>Entrada e Saída</h2>
+    <h2>Busque por um produto</h2>
 
-    <label for="entrada">Digite algo:</label>
+    <label for="entrada">Busca:</label>
     <input type="text" id="entrada">
 
-    <button onclick="exibirSaida()">Exibir Saída</button>
+    <button onclick="exibirSaida()">Procurar</button>
 
-    <h3>Saída:</h3>
+    <h3>Resultado da pesquisa:</h3>
     <p id="saida"></p>
 
     <script>
+        //onde vai ser feita a comunicação com a API
         function exibirSaida() {
-            // Obtém o valor da entrada
             var entrada = document.getElementById("entrada").value;
-
-            // Define a saída com base na entrada
-            var saida = "Você digitou: " + entrada;
-
-            // Exibe a saída no elemento de saída
+            var saida = "Resultado da procura: " + entrada;
             document.getElementById("saida").innerText = saida;
         }
     </script>
