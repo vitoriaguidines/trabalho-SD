@@ -10,22 +10,41 @@
 </head>
 <body>
 
-    <h2>Busque por um produto</h2>
+    <h2>Consultar Tabelas do Sakila</h2>
 
-    <label for="entrada">Busca:</label>
+    <label for="tabela">Escolha uma tabela:</label>
+    <select id="tabela">
+        <option value="actor">Ator</option>
+        <option value="film">Filme</option>
+        <option value="category">Categoria</option>
+    </select>
+
+    <label for="entrada">Consulta:</label>
     <input type="text" id="entrada">
 
-    <button onclick="exibirSaida()">Procurar</button>
+    <button onclick="consultar()">Consultar</button>
 
-    <h3>Resultado da pesquisa:</h3>
+    <h3>Resultado da Consulta:</h3>
     <p id="saida"></p>
 
     <script>
-        //onde vai ser feita a comunicação com a API
-        function exibirSaida() {
+        async function consultar() {
+            var tabela = document.getElementById("tabela").value;
             var entrada = document.getElementById("entrada").value;
-            var saida = "Resultado da procura: " + entrada;
-            document.getElementById("saida").innerText = saida;
+
+            try {
+                const response = await fetch(`/api/consultar/${tabela}/${entrada}`);
+                const data = await response.json();
+
+                if (data.existe) {
+                    document.getElementById("saida").innerText = `O objeto existe na tabela ${tabela}.`;
+                } else {
+                    document.getElementById("saida").innerText = `O objeto não foi encontrado na tabela ${tabela}.`;
+                }
+            } catch (error) {
+                console.error('Erro ao consultar:', error);
+                document.getElementById("saida").innerText = 'Erro ao consultar a API.';
+            }
         }
     </script>
 
