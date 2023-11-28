@@ -33,7 +33,7 @@
             var entrada = document.getElementById("entrada").value;
 
             try {
-                const response = await fetch(`/api/consultar/${tabela}/${entrada}`);
+                const response = await fetch(`/consultar/${tabela}/${entrada}`);
                 const data = await response.json();
 
                 if (data.existe) {
